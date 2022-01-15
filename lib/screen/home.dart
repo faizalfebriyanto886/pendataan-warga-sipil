@@ -95,11 +95,13 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 10),
                 Row(
                   children: const [
-                    Penduduk(),
-                    Penduduk(),
-                    Penduduk(),
+                    Penduduk(judul: "Penduduk Lama", image: "assets/images/sehat.png",),
+                    Penduduk(judul: "Penduduk Lahir", image: "assets/images/lahir.png",),
+                    Penduduk(judul: "Penduduk Wafat", image: "assets/images/meninggal.png",),
                   ],
-                )
+                ),
+                const SizedBox(height: 20),
+                const CardPeople()
               ],
             ),
           ),
@@ -146,28 +148,63 @@ class SayHello extends StatelessWidget {
 }
 
 class Penduduk extends StatelessWidget {
-  const Penduduk({ Key? key }) : super(key: key);
+  final String judul;
+  final String image;
+  const Penduduk({ 
+    Key? key,
+    required this.judul,
+    required this.image,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Column(
             children: [
-              Image.asset('assets/images/sehat.png', height: 100, width: 100,),
+              Image.asset(
+                image,
+                height: 80,
+                width: 80,
+              ),
               const SizedBox(height: 5),
-              const Text(
-                "Warga Sehat",
-                style: TextStyle(
-                  fontSize: 16,
+              Text(
+                judul,
+                style: const TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.w500
                 ),
               )
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CardPeople extends StatelessWidget {
+  const CardPeople({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      child: Card(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(10, 40, 300, 50),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/rianne-zuur-2NITiiVwWBE-unsplash.jpg"),
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter
+            )
+          ),
+          child: Text("lala"),
+        ),
       ),
     );
   }
