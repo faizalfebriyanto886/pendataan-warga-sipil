@@ -1,4 +1,4 @@
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pendataan_warga_sipil/widgets/colors.dart';
 
@@ -10,32 +10,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _tapButton(int i) {
-    setState(() {
-      // ignore: avoid_print
-      print('null');
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      bottomNavigationBar: DotNavigationBar(
-        backgroundColor: Colors.white,
-        onTap: _tapButton, 
-        items: [
-          DotNavigationBarItem(
-            icon: const Icon(Icons.home_filled),
-            selectedColor: primary,
-          ),
-          DotNavigationBarItem(
-            icon: const Icon(Icons.add_circle_outline),
-            selectedColor: primary,
-          ),
-          DotNavigationBarItem(
-            icon: const Icon(Icons.calendar_today_outlined),
-            selectedColor: primary,
-          ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: (Colors.grey[100])!,
+        items: const [
+          Icon(Icons.home_filled),
+          Icon(Icons.add_circle_outline),
+          Icon(Icons.calendar_today_outlined),
         ],
       ),
       body: Column(
@@ -203,7 +187,7 @@ class CardPeople extends StatelessWidget {
               alignment: Alignment.topCenter
             )
           ),
-          child: Text("lala"),
+          child: const Text("lala"),
         ),
       ),
     );
