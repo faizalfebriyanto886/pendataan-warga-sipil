@@ -17,7 +17,7 @@
         $kabupaten = $_POST['kabupaten'];
         $provinsi = $_POST['provinsi'];
 
-        $insert = mysqli_query($con, "insert into wilayah values ('null', '$rt', '$rw', '$kelurahan', '$kecamatan', '$kabupaten', '$provinsi')");
+        $insert = mysqli_query($con, "insert into wilayah values (NULL, '$rt', '$rw', '$kelurahan', '$kecamatan', '$kabupaten', '$provinsi')");
         if($insert){
             // return success
         }else{

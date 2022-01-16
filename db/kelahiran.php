@@ -24,10 +24,10 @@
         $status_kawin = $_POST['status_kawin'];
         $pekerjaan = $_POST['pekerjaan'];
 
-        $insert = mysqli_query($con, "insert into kelahiran values ('null', 'null', '$nomor_kelahiran', '$tempat', '$hari', '$tanggal', '$keterangan')");
+        $insert = mysqli_query($con, "insert into kelahiran values (NULL, NULL, '$nomor_kelahiran', '$tempat', '$hari', '$tanggal', '$keterangan')");
         if($insert){
             $last_id = mysqli_insert_id($con);
-            $insert_pendududuk = mysqli_query($con, "insert into penduduk value ('null', '$last_id', '$nama', '$jenis_kelamin', '$agama', '$status_kawin', '$pekerjaan')");
+            $insert_pendududuk = mysqli_query($con, "insert into penduduk value (NULL, '$last_id', '$nama', '$jenis_kelamin', '$agama', '$status_kawin', '$pekerjaan')");
 
             if($insert_pendududuk){
                 $last_nik_pen = mysqli_insert_id($con);

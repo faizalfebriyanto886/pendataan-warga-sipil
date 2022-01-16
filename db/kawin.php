@@ -14,7 +14,7 @@
         $akta_nikah = $_POST['akta_nikah'];
         $tempat_nikah = $_POST['tempat_nikah'];
 
-        $insert = mysqli_query($con, "insert into kawin values ('null', '$tanggal_akad', '$akta_nikah', '$tanggal_akad')");
+        $insert = mysqli_query($con, "insert into kawin values (NULL, '$tanggal_akad', '$akta_nikah', '$tanggal_akad')");
         if($insert){
             //return success
         }else{

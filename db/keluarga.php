@@ -16,7 +16,7 @@
         $alamat = $_POST['alamat'];
         $tanggal_keluar = $_POST['tanggal_keluar'];
 
-        $insert = mysqli_query($con, "insert into keluarga values ('null', '$id_wilayah', '$nomor_keluarga', '$status', '$alamat', '$tanggal_keluar')");
+        $insert = mysqli_query($con, "insert into keluarga values (NULL, '$id_wilayah', '$nomor_keluarga', '$status', '$alamat', '$tanggal_keluar')");
         if($insert){
             // return success
         }else{
