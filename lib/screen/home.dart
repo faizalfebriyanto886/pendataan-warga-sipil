@@ -16,10 +16,19 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.grey[100],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: (Colors.grey[100])!,
-        items: const [
-          Icon(Icons.home_filled),
-          Icon(Icons.add_circle_outline),
-          Icon(Icons.calendar_today_outlined),
+        items: [
+          Icon(
+            Icons.home_filled,
+            color: primary,
+          ),
+          Icon(
+            Icons.add_circle_outline,
+            color: primary,
+          ),
+          Icon(
+            Icons.calendar_today_outlined,
+            color: primary,
+          ),
         ],
       ),
       body: Column(
