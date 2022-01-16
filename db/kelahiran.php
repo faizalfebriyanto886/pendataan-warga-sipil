@@ -30,6 +30,9 @@
             $insert_pendududuk = mysqli_query($con, "insert into penduduk value ('null', '$last_id', '$nama', '$jenis_kelamin', '$agama', '$status_kawin', '$pekerjaan')");
 
             if($insert_pendududuk){
+                $last_nik_pen = mysqli_insert_id($con);
+                $update_kelahiran = mysqli_query($con, "update penduduk set nik='$nik' where id='$last_id'");
+                
                 //return success
             }else{
                 //return error
