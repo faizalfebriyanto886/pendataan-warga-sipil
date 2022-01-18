@@ -5,9 +5,9 @@ require_once "koneksi.php";
          $_GET['function']();
       } 
 
-    function get_kawin(){
+    function get_kematian(){
         global $koneksi;      
-        $query = $koneksi->query("select * from kawin");            
+        $query = $koneksi->query("select penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan, kematian.tempat, kematian.hari, kematian.tanggal, kematian.sebab from penduduk join kematian on penduduk.id = kematian.penduduk_id");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -50,55 +50,64 @@ require_once "koneksi.php";
         echo json_encode($response);
         
     }
-    function insert_kawin(){
+    function insert_kematian(){
         global $koneksi;   
-        $check = array('id' => '', 'tanggal_akad' => '', 'akta_nikah' => '', 'tempat_nikah' => '');
+        $check = array('id' => '', 'penduduk_id' => '', 'tempat' => '', 'hari' => '', 'tanggal' => '', 'sebab' => '');
         $check_match = count(array_intersect_key($_POST, $check));
         
         if($check_match == count($check)){
          
-            $result = mysqli_query($koneksi, "insert into kawin set
+            $result = mysqli_query($koneksi, "insert into kematian set
             id = 'NULL',
-            tanggal_akad = '$_POST[tanggal_akad]',
-            akta_nikah = '$_POST[akta_nikah]',
-            tempat_nikah = '$_POST[tempat_nikah]'");
+            penduduk_id = '$_POST[penduduk_id]',
+            tempat = '$_POST[tempat]',
+            hari = '$_POST[hari]',
+            tanggal = '$_POST[tanggal]',
+            sebab = '$_POST[sebab]'");
+
+            $last_id_kematian = mysqli_insert_id($koneksi);
+
+            $result2 = mysqli_query($koneksi, "update penduduk set
+            kematian_id = '$last_id_kematian' where id = $_POST[penduduk_id]");
+
             
-            if($result){
+            if($result2){
                 $response=array(
                     'status' => 1,
-                    'message' =>'Insert Success'
+                    'message' =>'Insert Success',
                 );
             }else{
                 $response=array(
                     'status' => 0,
-                    'message' =>'Insert Failed.'
+                    'message' =>'Insert Failed.',
                 );
             }
 
          }else{
             $response=array(
                      'status' => 0,
-                     'message' =>'Wrong Parameter'
+                     'message' =>'Wrong Parameter 1'
                   );
          }
          header('Content-Type: application/json');
          echo json_encode($response);
     }
-    function update_kawin(){
+    function update_kematian(){
         global $koneksi;
 
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         }   
-        $check = array('tanggal_akad' => '', 'akta_nikah' => '', 'tempat_nikah' => '');
+        $check = array('tempat' => '', 'hari' => '', 'tanggal' => '', 'sebab' => '');
         $check_match = count(array_intersect_key($_POST, $check));
 
         if($check_match == count($check)){
          
-            $result = mysqli_query($koneksi, "update kawin set               
-            tanggal_akad = '$_POST[tanggal_akad]',
-            akta_nikah = '$_POST[akta_nikah]',
-            tempat_nikah = '$_POST[tempat_nikah]' where id = $id");
+            $result = mysqli_query($koneksi, "update kematian set               
+            tempat = '$_POST[tempat]',
+            hari = '$_POST[hari]',
+            tanggal = '$_POST[tanggal]',
+            sebab = '$_POST[sebab]' where id = $id");
          
             if($result){
                $response=array(
@@ -121,10 +130,10 @@ require_once "koneksi.php";
          header('Content-Type: application/json');
          echo json_encode($response);
     }
-    function delete_kawin(){
+    function delete_kematian(){
         global $koneksi;
         $id = $_GET['id'];
-        $query = "delete from kawin where id=".$id;
+        $query = "delete from kematian where id=".$id;
         if(mysqli_query($koneksi, $query)){
             $response=array(
             'status' => 1,

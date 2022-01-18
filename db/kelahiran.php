@@ -1,79 +1,164 @@
 <?php
-    include "sql.php";
+require_once "koneksi.php";
 
-    if(isset($_GET['index'])){
-        $index = mysqli_query($con, "select * from kelahiran join penduduk on kelahiran.id_kelahiran = penduduk.id_kelahiran");
-        if($index){
-            //return success
-        }else{
-            // return error
+   if(function_exists($_GET['function'])) {
+         $_GET['function']();
+      } 
+
+    function get_kelahiran(){
+        global $koneksi;      
+        $query = $koneksi->query("select * from kelahiran");            
+        while($row=mysqli_fetch_object($query)){
+            $data[] =$row;
         }
+        $response=array(
+                        'status' => 1,
+                        'message' =>'Success',
+                        'data' => $data
+                    );
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }   
+   
+    function get_kawin_id(){
+        global $koneksi;
+        if (!empty($_GET["id"])) {
+            $id = $_GET["id"];      
+        } 
 
-    }if(isset($_POST['insert'])){
-        //form kelahiran 
-        $nomor_kelahiran = $_POST['nomor_kelahiran'];
-        $tempat = $_POST['tempat'];
-        $hari = $_POST['hari'];
-        $tanggal = $_POST['tanggal'];
-        $keterangan = $_POST['keterangan'];
+        $query ="select * from kawin where id= $id";      
+        $result = $koneksi->query($query);
 
-        //form penduduk
-        $nama = $_POST['nama'];
-        $jenis_kelamin = $_POST['jenis_kelamin'];
-        $agama = $_POST['agama'];
-        $status_kawin = $_POST['status_kawin'];
-        $pekerjaan = $_POST['pekerjaan'];
+        while($row = mysqli_fetch_object($result)){
+            $data[] = $row;
+        } 
 
-        $insert = mysqli_query($con, "insert into kelahiran values (NULL, NULL, '$nomor_kelahiran', '$tempat', '$hari', '$tanggal', '$keterangan')");
-        if($insert){
-            $last_id = mysqli_insert_id($con);
-            $insert_pendududuk = mysqli_query($con, "insert into penduduk value (NULL, '$last_id', '$nama', '$jenis_kelamin', '$agama', '$status_kawin', '$pekerjaan')");
+        if($data){
+        $response = array(
+                        'status' => 1,
+                        'message' =>'Success',
+                        'data' => $data
+                    );               
+        }else {
+            $response=array(
+                        'status' => 0,
+                        'message' =>'No Data Found'
+                    );
+        }
+        
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        
+    }
+    function insert_kelahiran(){
+        global $koneksi;   
+        $check = array('id' => '', 'nomor_kelahiran' => '', 'tempat' => '', 'hari' => '', 'tanggal' => '', 'keterangan' => '');
+        $check_match = count(array_intersect_key($_POST, $check));
+        
+        if($check_match == count($check)){
+         
+            $result = mysqli_query($koneksi, "insert into kelahiran set
+            id = 'NULL',
+            nomor_kelahiran = '$_POST[nomor_kelahiran]',
+            tempat = '$_POST[tempat]',
+            hari = '$_POST[hari]',
+            tanggal = '$_POST[tanggal]',
+            keterangan = '$_POST[keterangan]'");
 
-            if($insert_pendududuk){
-                $last_nik_pen = mysqli_insert_id($con);
-                $update_kelahiran = mysqli_query($con, "update penduduk set nik='$nik' where id='$last_id'");
-                
-                //return success
+            $last_id_kelahiran = mysqli_insert_id($koneksi);
+
+        
+            $result2 = mysqli_query($koneksi, "insert into penduduk set
+            id = 'NULL',
+            kelahiran_id = $last_id_kelahiran,
+            nama = '$_POST[nama]',
+            jenis_kelamin = '$_POST[jenis_kelamin]',
+            agama = '$_POST[agama]',
+            status_kawin = '$_POST[status_kawin]',
+            pekerjaan = '$_POST[pekerjaan]'");
+
+            $last_id_penduduk = mysqli_insert_id($koneksi);
+
+            $result3 = mysqli_query($koneksi, "update kelahiran set
+            penduduk_id = $last_id_penduduk where id = $last_id_kelahiran");
+
+            
+            if($result2){
+                $response=array(
+                    'status' => 1,
+                    'message' =>'Insert Success',
+                );
             }else{
-                //return error
+                $response=array(
+                    'status' => 0,
+                    'message' =>'Insert Failed.'
+                );
             }
 
-        }else{
-            //return error
-        }
-
-    }if(isset($_POST['update'])){
-        $id = $_POST['id'];
-        $nomor_kelahiran = $_POST['nomor_kelahiran'];
-        $tempat = $_POST['tempat'];
-        $hari = $_POST['hari'];
-        $tanggal = $_POST['tanggal'];
-        $keterangan = $_POST['keterangan'];
-
-        $update = mysqli_query($con, "update kelahiran set nomor_kelahiran='$nomor_kelahiran', tempat='$tempat', hari='$hari', tanggal='$tanggal', keterangan='$keterangan' where id='$id'");
-        if($update){
-            //return success
-        }else{
-            //return error
-        }
-
-    }if(isset($_GET['delete'])){
-        $id = $_GET['id'];
-
-        $delete = mysqli_query($con, "delete from kelahiran where id='$id'");
-        if($delete){
-            //return success
-        }else{
-            //return error
-        }
-
-    }if(isset($_GET['show'])){
-        $id = $_GET['id'];
-        
-        $show = mysqli_query($con, "select * from kelahiran where id='$id'");
-        if($show){
-            //return success
-        }else{
-            //return error
-        }
+         }else{
+            $response=array(
+                     'status' => 0,
+                     'message' =>'Wrong Parameter 1'
+                  );
+         }
+         header('Content-Type: application/json');
+         echo json_encode($response);
     }
+    function update_kelahiran(){
+        global $koneksi;
+
+        if (!empty($_GET["id"])) {
+            $id = $_GET["id"];      
+        }   
+        $check = array('nomor_kelahiran' => '', 'tempat' => '', 'hari' => '', 'tanggal' => '', 'keterangan' => '');
+        $check_match = count(array_intersect_key($_POST, $check));
+
+        if($check_match == count($check)){
+         
+            $result = mysqli_query($koneksi, "update kelahiran set               
+            nomor_kelahiran = '$_POST[nomor_kelahiran]',
+            tempat = '$_POST[tempat]',
+            hari = '$_POST[hari]',
+            tanggal = '$_POST[tanggal]',
+            keterangan = '$_POST[keterangan]' where id = $id");
+         
+            if($result){
+               $response=array(
+                  'status' => 1,
+                  'message' =>'Update Success'                  
+               );
+            }else{
+               $response=array(
+                  'status' => 0,
+                  'message' =>'Update Failed'                  
+               );
+            }
+         }else{
+            $response=array(
+                     'status' => 0,
+                     'message' =>'Wrong Parameter',
+                     'data'=> $id
+                  );
+         }
+         header('Content-Type: application/json');
+         echo json_encode($response);
+    }
+    function delete_kelahiran(){
+        global $koneksi;
+        $id = $_GET['id'];
+        $query = "delete from kelahiran where id=".$id;
+        if(mysqli_query($koneksi, $query)){
+            $response=array(
+            'status' => 1,
+            'message' =>'Delete Success'
+            );
+        }else{
+            $response=array(
+            'status' => 0,
+            'message' =>'Delete Fail.'
+            );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+ ?>
