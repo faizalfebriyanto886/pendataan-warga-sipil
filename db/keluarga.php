@@ -7,7 +7,7 @@ require_once "koneksi.php";
 
     function get_keluarga(){
         global $koneksi;      
-        $query = $koneksi->query("select * from keluarga");            
+        $query = $koneksi->query("select keluarga.id, keluarga.nomor_keluarga, keluarga.status, keluarga.alamat, wilayah.rt, wilayah.rw, wilayah.kelurahan, wilayah.kecamatan, wilayah.kabupaten, wilayah.provinsi, keluarga.tanggal_keluar from keluarga join wilayah on keluarga.wilayah_id = wilayah.id");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -20,13 +20,13 @@ require_once "koneksi.php";
         echo json_encode($response);
     }   
    
-    function get_kawin_id(){
+    function get_keluarga_id(){
         global $koneksi;
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         } 
 
-        $query ="select * from kawin where id= $id";      
+        $query ="select keluarga.id, keluarga.nomor_keluarga, keluarga.status, keluarga.alamat, wilayah.rt, wilayah.rw, wilayah.kelurahan, wilayah.kecamatan, wilayah.kabupaten, wilayah.provinsi, keluarga.tanggal_keluar from keluarga join wilayah on keluarga.wilayah_id = wilayah.id where keluarga.id= $id";      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){

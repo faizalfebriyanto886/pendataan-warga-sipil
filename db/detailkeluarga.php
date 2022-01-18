@@ -20,13 +20,13 @@ require_once "koneksi.php";
         echo json_encode($response);
     }   
    
-    function get_kawin_id(){
+    function get_detailkeluarga_id(){
         global $koneksi;
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         } 
 
-        $query ="select * from kawin where id= $id";      
+        $query ="select * from detail_keluarga where id= $id";      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){

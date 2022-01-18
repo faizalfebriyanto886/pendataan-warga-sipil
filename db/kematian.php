@@ -7,7 +7,7 @@ require_once "koneksi.php";
 
     function get_kematian(){
         global $koneksi;      
-        $query = $koneksi->query("select penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan, kematian.tempat, kematian.hari, kematian.tanggal, kematian.sebab from penduduk join kematian on penduduk.id = kematian.penduduk_id");            
+        $query = $koneksi->query("select penduduk.id, penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan, kematian.tempat, kematian.hari, kematian.tanggal, kematian.sebab from penduduk join kematian on penduduk.id = kematian.penduduk_id");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -20,13 +20,13 @@ require_once "koneksi.php";
         echo json_encode($response);
     }   
    
-    function get_kawin_id(){
+    function get_kematian_id(){
         global $koneksi;
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         } 
 
-        $query ="select * from kawin where id= $id";      
+        $query ="select penduduk.id, penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan, kematian.tempat, kematian.hari, kematian.tanggal, kematian.sebab from penduduk join kematian on penduduk.id = kematian.penduduk_id where kematian.id= $id";      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){
