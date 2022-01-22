@@ -1,5 +1,9 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pendataan_warga_sipil/screen/add_user.dart';
+import 'package:pendataan_warga_sipil/screen/kelahiran.dart';
+import 'package:pendataan_warga_sipil/screen/penduduk.dart';
+import 'package:pendataan_warga_sipil/screen/wafat.dart';
 import 'package:pendataan_warga_sipil/widgets/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,23 +18,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: (Colors.grey[100])!,
-        items: [
-          Icon(
-            Icons.home_filled,
-            color: primary,
-          ),
-          Icon(
-            Icons.add_circle_outline,
-            color: primary,
-          ),
-          Icon(
-            Icons.calendar_today_outlined,
-            color: primary,
-          ),
-        ],
-      ),
       body: Column(
         children: [
           Container(
@@ -66,7 +53,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const SayHello()
+                const SayHello(),
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -86,12 +74,65 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  children: const [
-                    Penduduk(judul: "Penduduk Lama", image: "assets/images/sehat.png",),
-                    Penduduk(judul: "Penduduk Lahir", image: "assets/images/lahir.png",),
-                    Penduduk(judul: "Penduduk Wafat", image: "assets/images/meninggal.png",),
-                  ],
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PendudukPage()));
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset("assets/images/sehat.png", height: 80, width: 80,),
+                            const Text(
+                              "penduduk",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const WafatPage()));
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset("assets/images/meninggal.png", height: 80, width: 80,),
+                            const Text(
+                              "Penduduk Wafat",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const KelahiranPage()));
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset("assets/images/lahir.png", height: 80, width: 80,),
+                            const Text(
+                              "Penduduk Lahir",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 const CardPeople()
@@ -117,7 +158,7 @@ class SayHello extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Hello Nep",
+              "Hello ",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -127,7 +168,7 @@ class SayHello extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            "Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.",
+            "Selamat bekerja dengan santai, jangan terlalu fokus karna fokus bapaknya son",
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -143,37 +184,45 @@ class SayHello extends StatelessWidget {
 class Penduduk extends StatelessWidget {
   final String judul;
   final String image;
+  final String ontep;
+
   const Penduduk({ 
     Key? key,
     required this.judul,
     required this.image,
+    required this.ontep,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(
-            children: [
-              Image.asset(
-                image,
-                height: 80,
-                width: 80,
-              ),
-              const SizedBox(height: 5),
-              Text(
-                judul,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500
+      child: ElevatedButton(
+        onPressed: () {
+          Get.toNamed(ontep);
+        },
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Image.asset(
+                  image,
+                  height: 80,
+                  width: 80,
                 ),
-              )
-            ],
-          ),
-        ],
+                const SizedBox(height: 5),
+                Text(
+                  judul,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -185,18 +234,37 @@ class CardPeople extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
-      child: Card(
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(10, 40, 300, 50),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/rianne-zuur-2NITiiVwWBE-unsplash.jpg"),
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter
-            )
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(40)
+      ),
+      padding: const EdgeInsets.only(top: 120),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddUser()));
+        },
+        child: Center(
+          child: Card(
+            color: Colors.grey[100],
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: const DecorationImage(
+                  image: AssetImage("assets/images/rianne-zuur-2NITiiVwWBE-unsplash.jpg"),
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter
+                )
+              ),
+              child: const Text(
+                "Tambah data kelahiran",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
+                ),
+              ),
+            ),
           ),
-          child: const Text("lala"),
         ),
       ),
     );

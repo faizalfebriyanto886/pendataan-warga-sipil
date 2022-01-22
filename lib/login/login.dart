@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pendataan_warga_sipil/screen/home.dart';
 import 'package:pendataan_warga_sipil/widgets/colors.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -11,6 +14,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  // final List<User> _listUser = [];
+  
+
+  Future<List> getData() async{
+    final responce = await http.get(Uri.parse("http://10.219.68.101/db-sipil/user.php?function=get_user"));
+    debugPrint(responce.body);
+    return jsonDecode(responce.body);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: _username,
                       decoration: const InputDecoration(
                         labelText: "Username",
                         border: OutlineInputBorder(),
@@ -53,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: _password,
                       obscureText: true,
                       decoration: const InputDecoration(
                         labelText: "Password",
@@ -67,8 +82,18 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.all(5),
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                        onPressed: ()  {
+                          getData().then((value) {
+                            for (var doc in value) {
+                              if (_username.text == doc['username'] && _password.text == doc['password']) {
+                                _username.text = doc['username'];
+                                _password.text = doc['password'];
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                                // ignore: avoid_print
+                                print(doc['username']);
+                              }
+                            }
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           primary: primary,
