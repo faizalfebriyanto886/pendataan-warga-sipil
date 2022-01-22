@@ -7,7 +7,7 @@ require_once "koneksi.php";
 
     function get_kematian(){
         global $koneksi;      
-        $query = $koneksi->query("select penduduk.id, penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan, kematian.tempat, kematian.hari, kematian.tanggal, kematian.sebab from penduduk join kematian on penduduk.id = kematian.penduduk_id");            
+        $query = $koneksi->query("select penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan, kematian.tempat, kematian.hari, kematian.tanggal, kematian.sebab from penduduk join kematian on penduduk.id = kematian.penduduk_id");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -52,7 +52,7 @@ require_once "koneksi.php";
     }
     function insert_kematian(){
         global $koneksi;   
-        $check = array('id' => '', 'penduduk_id' => '', 'tempat' => '', 'hari' => '', 'tanggal' => '', 'sebab' => '');
+        $check = array('penduduk_id' => '', 'tempat' => '', 'hari' => '', 'tanggal' => '', 'sebab' => '');
         $check_match = count(array_intersect_key($_POST, $check));
         
         if($check_match == count($check)){

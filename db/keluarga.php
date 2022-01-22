@@ -7,7 +7,7 @@ require_once "koneksi.php";
 
     function get_keluarga(){
         global $koneksi;      
-        $query = $koneksi->query("select keluarga.id, keluarga.nomor_keluarga, keluarga.status, keluarga.alamat, wilayah.rt, wilayah.rw, wilayah.kelurahan, wilayah.kecamatan, wilayah.kabupaten, wilayah.provinsi, keluarga.tanggal_keluar from keluarga join wilayah on keluarga.wilayah_id = wilayah.id");            
+        $query = $koneksi->query("select keluarga.id, keluarga.nomor_keluarga, keluarga.status, alamat.jalan, alamat.nomor from keluarga join alamat on keluarga.alamat_id = alamat.id");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -26,7 +26,7 @@ require_once "koneksi.php";
             $id = $_GET["id"];      
         } 
 
-        $query ="select keluarga.id, keluarga.nomor_keluarga, keluarga.status, keluarga.alamat, wilayah.rt, wilayah.rw, wilayah.kelurahan, wilayah.kecamatan, wilayah.kabupaten, wilayah.provinsi, keluarga.tanggal_keluar from keluarga join wilayah on keluarga.wilayah_id = wilayah.id where keluarga.id= $id";      
+        $query ="select keluarga.id, keluarga.nomor_keluarga, keluarga.status, alamat.jalan, alamat.nomor from keluarga join alamat on keluarga.alamat_id = alamat.id where keluarga.id= $id";      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){
@@ -52,17 +52,16 @@ require_once "koneksi.php";
     }
     function insert_keluarga(){
         global $koneksi;   
-        $check = array('id' => '', 'wilayah_id' => '', 'nomor_keluarga' => '', 'status' => '', 'alamat' => '', 'tanggal_keluar' => '');
+        $check = array('alamat_id' => '', 'nomor_keluarga' => '', 'status' => '', 'tanggal_keluar' => '');
         $check_match = count(array_intersect_key($_POST, $check));
         
         if($check_match == count($check)){
          
             $result = mysqli_query($koneksi, "insert into keluarga set
             id = 'NULL',
-            wilayah_id = '$_POST[wilayah_id]',
+            alamat_id = '$_POST[alamat_id]',
             nomor_keluarga = '$_POST[nomor_keluarga]',
             status = '$_POST[status]',
-            alamat = '$_POST[alamat]',
             tanggal_keluar = '$_POST[tanggal_keluar]'");
             
             if($result){
@@ -92,16 +91,15 @@ require_once "koneksi.php";
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         }   
-        $check = array('wilayah_id' => '', 'nomor_keluarga' => '', 'status' => '', 'alamat' => '', 'tanggal_keluar' => '');
+        $check = array('alamat_id' => '', 'nomor_keluarga' => '', 'status' => '', 'tanggal_keluar' => '');
         $check_match = count(array_intersect_key($_POST, $check));
 
         if($check_match == count($check)){
          
             $result = mysqli_query($koneksi, "update keluarga set               
-            wilayah_id = '$_POST[wilayah_id]',
+            alamat_id = '$_POST[alamat_id]',
             nomor_keluarga = '$_POST[nomor_keluarga]',
             status = '$_POST[status]',
-            alamat = '$_POST[alamat]',
             tanggal_keluar = '$_POST[tanggal_keluar]'
             where id = $id");
          

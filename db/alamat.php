@@ -5,12 +5,9 @@ require_once "koneksi.php";
          $_GET['function']();
       } 
 
-    function get_detailkawin(){
+    function get_alamat(){
         global $koneksi;      
-        $query = $koneksi->query("select detail_kawin.id, kawin.akta_kawin, kawin.tanggal_kawin, kawin.tempat_kawin, penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.pekerjaan
-                                from kawin join detail_kawin
-                                on kawin.id = detail_kawin.kawin_id
-                                join penduduk on penduduk_id = penduduk.id");            
+        $query = $koneksi->query("select * from alamat");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -23,16 +20,13 @@ require_once "koneksi.php";
         echo json_encode($response);
     }   
    
-    function get_detailkawin_id(){
+    function get_alamat_id(){
         global $koneksi;
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         } 
 
-        $query ="select detail_kawin.id, kawin.akta_kawin, kawin.tanggal_kawin, kawin.tempat_kawin, penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.pekerjaan
-            from kawin join detail_kawin
-            on kawin.id = detail_kawin.kawin_id
-            join penduduk on penduduk_id = penduduk.id where detail_kawin.id = $id";      
+        $query ="select * from alamat where id= $id";      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){
@@ -56,17 +50,18 @@ require_once "koneksi.php";
         echo json_encode($response);
         
     }
-    function insert_detailkawin(){
+    function insert_alamat(){
         global $koneksi;   
-        $check = array('kawin_id' => '', 'penduduk_id' => '');
+        $check = array('wilayah_id' => '', 'jalan' => '', 'nomor' => '');
         $check_match = count(array_intersect_key($_POST, $check));
         
         if($check_match == count($check)){
          
-            $result = mysqli_query($koneksi, "insert into detail_kawin set
+            $result = mysqli_query($koneksi, "insert into alamat set
             id = 'NULL',
-            kawin_id = '$_POST[kawin_id]',
-            penduduk_id = '$_POST[penduduk_id]'");
+            wilayah_id = '$_POST[wilayah_id]',
+            jalan = '$_POST[jalan]',
+            nomor = '$_POST[nomor]'");
             
             if($result){
                 $response=array(
@@ -89,20 +84,21 @@ require_once "koneksi.php";
          header('Content-Type: application/json');
          echo json_encode($response);
     }
-    function update_detailkawin(){
+    function update_alamat(){
         global $koneksi;
 
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         }   
-        $check = array('kawin_id' => '', 'penduduk_id' => '');
+        $check = array('wilayah_id' => '', 'jalan' => '', 'nomor' => '');
         $check_match = count(array_intersect_key($_POST, $check));
 
         if($check_match == count($check)){
          
-            $result = mysqli_query($koneksi, "update detail_kawin set               
-            kawin_id = '$_POST[kawin_id]',
-            penduduk_id = '$_POST[penduduk_id]' where id = $id");
+            $result = mysqli_query($koneksi, "update alamat set               
+            wilayah_id = '$_POST[wilayah_id]',
+            jalan = '$_POST[jalan]',
+            nomor = '$_POST[nomor]' where id = $id");
          
             if($result){
                $response=array(
@@ -125,10 +121,10 @@ require_once "koneksi.php";
          header('Content-Type: application/json');
          echo json_encode($response);
     }
-    function delete_detailkawin(){
+    function delete_alamat(){
         global $koneksi;
         $id = $_GET['id'];
-        $query = "delete from detail_kawin where id=".$id;
+        $query = "delete from alamat where id=".$id;
         if(mysqli_query($koneksi, $query)){
             $response=array(
             'status' => 1,

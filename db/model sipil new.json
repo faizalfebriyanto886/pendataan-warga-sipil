@@ -1,0 +1,1694 @@
+{
+	"info": {
+		"_postman_id": "d86a1e61-5cee-456e-bfb9-fb882c8ca606",
+		"name": "model sipil",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "wilayah",
+			"item": [
+				{
+					"name": "get wilayah",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/wilayah.php?function=get_wilayah",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"wilayah.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_wilayah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert wilayah",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "rt",
+									"value": "02",
+									"type": "text"
+								},
+								{
+									"key": "rw",
+									"value": "02",
+									"type": "text"
+								},
+								{
+									"key": "kelurahan",
+									"value": "pakis",
+									"type": "text"
+								},
+								{
+									"key": "kecamatan",
+									"value": "sawahan",
+									"type": "text"
+								},
+								{
+									"key": "kabupaten",
+									"value": "surabaya",
+									"type": "text"
+								},
+								{
+									"key": "provinsi",
+									"value": "jawa timur",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/wilayah.php?function=insert_wilayah",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"wilayah.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_wilayah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update wilayah",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "rt",
+									"value": "01",
+									"type": "text"
+								},
+								{
+									"key": "rw",
+									"value": "01",
+									"type": "text"
+								},
+								{
+									"key": "kelurahan",
+									"value": "kedurus",
+									"type": "text"
+								},
+								{
+									"key": "kecamatan",
+									"value": "karangpilang",
+									"type": "text"
+								},
+								{
+									"key": "kabupaten",
+									"value": "surabaya",
+									"type": "text"
+								},
+								{
+									"key": "provinsi",
+									"value": "jawa timur",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/wilayah.php?function=update_wilayah&id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"wilayah.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_wilayah"
+								},
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete wilayah",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/wilayah.php?function=delete_wilayah&id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"wilayah.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_wilayah"
+								},
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get wilayah id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/wilayah.php?function=get_wilayah_id&id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"wilayah.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_wilayah_id"
+								},
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "alamat",
+			"item": [
+				{
+					"name": "get alamat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/alamat.php?function=get_alamat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"alamat.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_alamat"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert alamat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "wilayah_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "jalan",
+									"value": "jalan utama wonorejo",
+									"type": "text"
+								},
+								{
+									"key": "nomor",
+									"value": "19A",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/alamat.php?function=insert_alamat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"alamat.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_alamat"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update alamat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "wilayah_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "jalan",
+									"value": "jalan wonorejo",
+									"type": "text"
+								},
+								{
+									"key": "nomor",
+									"value": "19",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/alamat.php?function=update_alamat&id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"alamat.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_alamat"
+								},
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete alamat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/alamat.php?function=delete_alamat&id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"alamat.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_alamat"
+								},
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get alamat id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/alamat.php?function=get_alamat_id&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"alamat.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_alamat_id"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "keluarga",
+			"item": [
+				{
+					"name": "get keluarga",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/keluarga.php?function=get_keluarga",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"keluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_keluarga"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert keluarga",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "alamat_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "nomor_keluarga",
+									"value": "000222",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "aktif",
+									"type": "text"
+								},
+								{
+									"key": "tanggal_keluar",
+									"value": "2022-01-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/keluarga.php?function=insert_keluarga",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"keluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_keluarga"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update keluarga",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "alamat_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "nomor_keluarga",
+									"value": "000123",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "aktif",
+									"type": "text"
+								},
+								{
+									"key": "tanggal_keluar",
+									"value": "2022-02-20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/keluarga.php?function=update_keluarga&id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"keluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_keluarga"
+								},
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete keluarga",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/keluarga.php?function=delete_keluarga&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"keluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_keluarga"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get keluarga id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/keluarga.php?function=get_keluarga_id&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"keluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_keluarga_id"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "kelahiran",
+			"item": [
+				{
+					"name": "get kelahiran",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kelahiran.php?function=get_kelahiran",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kelahiran.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_kelahiran"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert kelahiran dan penduduk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nomor_kelahiran",
+									"value": "654321",
+									"type": "text"
+								},
+								{
+									"key": "tempat",
+									"value": "wonokromo",
+									"type": "text"
+								},
+								{
+									"key": "hari",
+									"value": "jumat",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2020-11-26",
+									"type": "text"
+								},
+								{
+									"key": "keterangan",
+									"value": "lahir sehat",
+									"type": "text"
+								},
+								{
+									"key": "nik",
+									"value": "3517182611990002",
+									"type": "text"
+								},
+								{
+									"key": "nama",
+									"value": "Erika Wahyu Amiruddin",
+									"type": "text"
+								},
+								{
+									"key": "jenis_kelamin",
+									"value": "perempuan",
+									"type": "text"
+								},
+								{
+									"key": "agama",
+									"value": "islam",
+									"type": "text"
+								},
+								{
+									"key": "status_kawin",
+									"value": "belum kawin",
+									"type": "text"
+								},
+								{
+									"key": "pekerjaan",
+									"value": "mahasiswa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/kelahiran.php?function=insert_kelahiran",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kelahiran.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_kelahiran"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update kelahiran",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nomor_kelahiran",
+									"value": "654321",
+									"type": "text"
+								},
+								{
+									"key": "tempat",
+									"value": "rungkut",
+									"type": "text"
+								},
+								{
+									"key": "hari",
+									"value": "jumat",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2021-11-26",
+									"type": "text"
+								},
+								{
+									"key": "keterangan",
+									"value": "lahir sehat",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/kelahiran.php?function=update_kelahiran&id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kelahiran.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_kelahiran"
+								},
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete kelahiran",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kelahiran.php?function=delete_kelahiran&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kelahiran.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_kelahiran"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get kelahiran id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kelahiran.php?function=get_kelahiran_id&id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kelahiran.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_kelahiran_id"
+								},
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "kematian",
+			"item": [
+				{
+					"name": "get kematian",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kematian.php?function=get_kematian",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kematian.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_kematian"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert kematian dan update penduduk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "penduduk_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "tempat",
+									"value": "rumah sakit",
+									"type": "text"
+								},
+								{
+									"key": "hari",
+									"value": "jumat",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2020-11-20",
+									"type": "text"
+								},
+								{
+									"key": "sebab",
+									"value": "sakit",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/kematian.php?function=insert_kematian",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kematian.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_kematian"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update kematian",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "tempat",
+									"value": "rumah sakit",
+									"type": "text"
+								},
+								{
+									"key": "hari",
+									"value": "jumat",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2020-02-02",
+									"type": "text"
+								},
+								{
+									"key": "sebab",
+									"value": "sakit",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/kematian.php?function=update_kematian&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kematian.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_kematian"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete kematian",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kematian.php?function=delete_kematian&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kematian.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_kematian"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get kematian id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kematian.php?function=get_kematian_id&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kematian.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_kematian_id"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "detail keluarga",
+			"item": [
+				{
+					"name": "get detail keluarga",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkeluarga.php?function=get_detailkeluarga",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkeluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_detailkeluarga"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert detail keluarga",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "keluarga_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "penduduk_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkeluarga.php?function=insert_detailkeluarga",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkeluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_detailkeluarga"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update detail keluarga",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "keluarga_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "penduduk_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkeluarga.php?function=update_detailkeluarga&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkeluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_detailkeluarga"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete detail keluarga",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkeluarga.php?function=delete_detailkeluarga&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkeluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_detailkeluarga"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get detail keluarga id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkeluarga.php?function=get_detailkeluarga_id&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkeluarga.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_detailkeluarga_id"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "kawin",
+			"item": [
+				{
+					"name": "get kawin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kawin.php?function=get_kawin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_kawin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert kawin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "tanggal_kawin",
+									"value": "2022-01-06",
+									"type": "text"
+								},
+								{
+									"key": "akta_kawin",
+									"value": "123123123",
+									"type": "text"
+								},
+								{
+									"key": "tempat_kawin",
+									"value": "jombang",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/kawin.php?function=insert_kawin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_kawin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update kawin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "tanggal_kawin",
+									"value": "2022-02-02",
+									"type": "text"
+								},
+								{
+									"key": "akta_kawin",
+									"value": "456456456",
+									"type": "text"
+								},
+								{
+									"key": "tempat_kawin",
+									"value": "lamongan",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/kawin.php?function=update_kawin&id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_kawin"
+								},
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete kawin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kawin.php?function=delete_kawin&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_kawin"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get kawin id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/kawin.php?function=get_kawin_id&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"kawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_kawin_id"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "detail kawin",
+			"item": [
+				{
+					"name": "get detail kawin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkawin.php?function=get_detailkawin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_detailkawin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert detail kawin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "kawin_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "penduduk_id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkawin.php?function=insert_detailkawin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "insert_detailkawin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update detail kawin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "kawin_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "penduduk_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkawin.php?function=update_detailkawin&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_detailkawin"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete detail kawin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkawin.php?function=delete_detailkawin&id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "delete_detailkawin"
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get detail kawin id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/detailkawin.php?function=get_detailkawin_id&id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"detailkawin.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_detailkawin_id"
+								},
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/user.php?function=get_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"user.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_user"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "penduduk",
+			"item": [
+				{
+					"name": "get penduduk",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/penduduk.php?function=get_penduduk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"penduduk.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_penduduk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update penduduk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nama",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "jenis_kelamin",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "agama",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "status_kawin",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "pekerjaan",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/modelsipil/penduduk.php?function=update_penduduk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"penduduk.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "update_penduduk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get penduduk id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/modelsipil/penduduk.php?function=get_penduduk_id&id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"modelsipil",
+								"penduduk.php"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "get_penduduk_id"
+								},
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

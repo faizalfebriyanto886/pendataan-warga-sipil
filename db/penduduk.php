@@ -7,7 +7,7 @@ require_once "koneksi.php";
 
     function get_penduduk(){
         global $koneksi;      
-        $query = $koneksi->query("select * from penduduk");            
+        $query = $koneksi->query("select id, nama, jenis_kelamin, agama, status_kawin, pekerjaan from penduduk");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -26,7 +26,7 @@ require_once "koneksi.php";
             $id = $_GET["id"];      
         } 
 
-        $query ="select * from penduduk where id= $id";      
+        $query ="select nama, jenis_kelamin, agama, status_kawin, pekerjaan from penduduk where id= $id";      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){

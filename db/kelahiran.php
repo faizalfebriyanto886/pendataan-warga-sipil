@@ -7,7 +7,7 @@ require_once "koneksi.php";
 
     function get_kelahiran(){
         global $koneksi;      
-        $query = $koneksi->query("select * from kelahiran");            
+        $query = $koneksi->query("select kelahiran.nomor_kelahiran, kelahiran.tempat, kelahiran.hari, kelahiran.tanggal, kelahiran.keterangan, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama from kelahiran join penduduk on kelahiran.penduduk_id = penduduk.id");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -20,13 +20,13 @@ require_once "koneksi.php";
         echo json_encode($response);
     }   
    
-    function get_kawin_id(){
+    function get_kelahiran_id(){
         global $koneksi;
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         } 
 
-        $query ="select * from kawin where id= $id";      
+        $query ="select kelahiran.nomor_kelahiran, kelahiran.tempat, kelahiran.hari, kelahiran.tanggal, kelahiran.keterangan, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama from kelahiran join penduduk on kelahiran.penduduk_id = penduduk.id where kelahiran.id =".$id;      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){
@@ -52,7 +52,7 @@ require_once "koneksi.php";
     }
     function insert_kelahiran(){
         global $koneksi;   
-        $check = array('id' => '', 'nomor_kelahiran' => '', 'tempat' => '', 'hari' => '', 'tanggal' => '', 'keterangan' => '');
+        $check = array('nomor_kelahiran' => '', 'tempat' => '', 'hari' => '', 'tanggal' => '', 'keterangan' => '');
         $check_match = count(array_intersect_key($_POST, $check));
         
         if($check_match == count($check)){
@@ -71,6 +71,7 @@ require_once "koneksi.php";
             $result2 = mysqli_query($koneksi, "insert into penduduk set
             id = 'NULL',
             kelahiran_id = $last_id_kelahiran,
+            nik = '$_POST[nik]',
             nama = '$_POST[nama]',
             jenis_kelamin = '$_POST[jenis_kelamin]',
             agama = '$_POST[agama]',

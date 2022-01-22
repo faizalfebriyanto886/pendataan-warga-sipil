@@ -52,7 +52,7 @@ require_once "koneksi.php";
     }
     function insert_wilayah(){
         global $koneksi;   
-        $check = array('id' => '', 'rt' => '', 'rw' => '', 'kelurahan' => '', 'kecamatan' => '', 'kabupaten' => '', 'provinsi' => '');
+        $check = array('rt' => '', 'rw' => '', 'kelurahan' => '', 'kecamatan' => '', 'kabupaten' => '', 'provinsi' => '');
         $check_match = count(array_intersect_key($_POST, $check));
         
         if($check_match == count($check)){

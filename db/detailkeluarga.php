@@ -7,7 +7,10 @@ require_once "koneksi.php";
 
     function get_detailkeluarga(){
         global $koneksi;      
-        $query = $koneksi->query("select * from detail_keluarga");            
+        $query = $koneksi->query("select detail_keluarga.id, keluarga.nomor_keluarga, keluarga.status, keluarga.tanggal_keluar, penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan 
+                                from keluarga join detail_keluarga 
+                                on keluarga.id = detail_keluarga.keluarga_id
+                                join penduduk on detail_keluarga.penduduk_id = penduduk.id");            
         while($row=mysqli_fetch_object($query)){
             $data[] =$row;
         }
@@ -26,7 +29,10 @@ require_once "koneksi.php";
             $id = $_GET["id"];      
         } 
 
-        $query ="select * from detail_keluarga where id= $id";      
+        $query ="select detail_keluarga.id, keluarga.nomor_keluarga, keluarga.status, keluarga.tanggal_keluar, penduduk.nik, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.status_kawin, penduduk.pekerjaan 
+        from keluarga join detail_keluarga 
+        on keluarga.id = detail_keluarga.keluarga_id
+        join penduduk on detail_keluarga.penduduk_id = penduduk.id where detail_keluarga.id= $id";      
         $result = $koneksi->query($query);
 
         while($row = mysqli_fetch_object($result)){

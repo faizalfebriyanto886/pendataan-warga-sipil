@@ -52,16 +52,16 @@ require_once "koneksi.php";
     }
     function insert_kawin(){
         global $koneksi;   
-        $check = array('id' => '', 'tanggal_akad' => '', 'akta_nikah' => '', 'tempat_nikah' => '');
+        $check = array('tanggal_kawin' => '', 'akta_kawin' => '', 'tempat_kawin' => '');
         $check_match = count(array_intersect_key($_POST, $check));
         
         if($check_match == count($check)){
          
             $result = mysqli_query($koneksi, "insert into kawin set
             id = 'NULL',
-            tanggal_akad = '$_POST[tanggal_akad]',
-            akta_nikah = '$_POST[akta_nikah]',
-            tempat_nikah = '$_POST[tempat_nikah]'");
+            tanggal_kawin = '$_POST[tanggal_kawin]',
+            akta_kawin = '$_POST[akta_kawin]',
+            tempat_kawin = '$_POST[tempat_kawin]'");
             
             if($result){
                 $response=array(
@@ -90,15 +90,15 @@ require_once "koneksi.php";
         if (!empty($_GET["id"])) {
             $id = $_GET["id"];      
         }   
-        $check = array('tanggal_akad' => '', 'akta_nikah' => '', 'tempat_nikah' => '');
+        $check = array('tanggal_kawin' => '', 'akta_kawin' => '', 'tempat_kawin' => '');
         $check_match = count(array_intersect_key($_POST, $check));
 
         if($check_match == count($check)){
          
             $result = mysqli_query($koneksi, "update kawin set               
-            tanggal_akad = '$_POST[tanggal_akad]',
-            akta_nikah = '$_POST[akta_nikah]',
-            tempat_nikah = '$_POST[tempat_nikah]' where id = $id");
+            tanggal_kawin = '$_POST[tanggal_kawin]',
+            akta_kawin = '$_POST[akta_kawin]',
+            tempat_kawin = '$_POST[tempat_kawin]' where id = $id");
          
             if($result){
                $response=array(
@@ -114,8 +114,7 @@ require_once "koneksi.php";
          }else{
             $response=array(
                      'status' => 0,
-                     'message' =>'Wrong Parameter',
-                     'data'=> $id
+                     'message' =>'Wrong Parameter'
                   );
          }
          header('Content-Type: application/json');
