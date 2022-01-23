@@ -18,7 +18,7 @@ class _WafatPageState extends State<WafatPage> {
 
   
   Future<List> getDataMeninggal() async {
-    final response = await http.get(Uri.parse('http://10.219.68.101/db-sipil/kematian.php?function=get_kematian'));
+    final response = await http.get(Uri.parse('http://192.168.1.6/db-sipil/kematian.php?function=get_kematian'));
     debugPrint(response.body);
     return jsonDecode(response.body);
   }
@@ -39,7 +39,7 @@ class _WafatPageState extends State<WafatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Penduduk'),
+        title: const Text('Penduduk Wafat'),
         backgroundColor: primary,
       ),
       body: Container(

@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:cool_alert/cool_alert.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -31,7 +30,7 @@ class _AddUserState extends State<AddUser> {
 
 
   void tambahData() async {
-    var kelahiran = await http.post(Uri.parse('http://10.219.68.101/db-sipil/kelahiran.php?function=insert_kelahiran'),
+    var kelahiran = await http.post(Uri.parse('http://192.168.1.6/db-sipil/kelahiran.php?function=insert_kelahiran'),
       body: {
         "nomor_kelahiran": _nomorKelahiran.text,
         "tempat": _tempat.text,
@@ -48,8 +47,21 @@ class _AddUserState extends State<AddUser> {
     if (kelahiran.statusCode == 200) {
       // ignore: avoid_print
       print(kelahiran.body);
-      // ignore: avoid_print
-      print(_tanggal.text);
+      _nomorKelahiran.text = " ";
+      _tempat.text = " ";
+      _hari.text = " ";
+      _tanggal.text = " ";
+      _keterangan.text = " ";
+      _nama.text = " ";
+      _jenis_kelamin.text = " ";
+      _agama.text = " ";
+      _status_kawin.text = " ";
+      _pekerjaan.text = " ";
+      CoolAlert.show(
+        context: context,
+        type: CoolAlertType.success,
+        text: "Data berhasil ditambahkan",
+      );
     } else {
       // ignore: avoid_print
       print("salah coy");

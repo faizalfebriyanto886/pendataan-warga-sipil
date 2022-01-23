@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   
 
   Future<List> getData() async{
-    final responce = await http.get(Uri.parse("http://10.219.68.101/db-sipil/user.php?function=get_user"));
+    final responce = await http.get(Uri.parse("http://192.168.1.6/db-sipil/user.php?function=get_user"));
     debugPrint(responce.body);
     return jsonDecode(responce.body);
   }

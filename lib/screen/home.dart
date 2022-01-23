@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pendataan_warga_sipil/screen/add_user.dart';
+import 'package:pendataan_warga_sipil/screen/kawin.dart';
 import 'package:pendataan_warga_sipil/screen/kelahiran.dart';
 import 'package:pendataan_warga_sipil/screen/penduduk.dart';
+import 'package:pendataan_warga_sipil/screen/tambah_kawin.dart';
 import 'package:pendataan_warga_sipil/screen/wafat.dart';
 import 'package:pendataan_warga_sipil/widgets/colors.dart';
 
@@ -17,6 +20,100 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: primary,
+        onPressed: () {
+          showMaterialModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            context: context,
+            builder: (context) => Container(
+              height: 100,
+              padding: const EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AddUser()));
+
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/icons/kelahiran.png', height: 40, width: 40),
+                        const SizedBox(height: 5),
+                        const Text("Kelahiran")
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  GestureDetector(
+                    onTap: (){
+                      // ignore: avoid_print
+                      print("keluarga");
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/icons/keluarga.png', height: 40, width: 40),
+                        const SizedBox(height: 5),
+                        const Text("Keluarga")
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TambahKawin()));
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/icons/menikah.png', height: 40, width: 40),
+                        const SizedBox(height: 5),
+                        const Text("Menikah")
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  GestureDetector(
+                    onTap: (){
+                      // ignore: avoid_print
+                      print("meninggal");
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/icons/RIP.png', height: 40, width: 40),
+                        const SizedBox(height: 5),
+                        const Text("Meninggal")
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ),
+          );
+        }, 
+        label: const Text("Tambah data"),
+        icon: const Icon(Icons.add),
+        elevation: 4.0,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            IconButton(
+              onPressed: () {}, 
+              icon: const Icon(Icons.menu)
+            ),
+            IconButton(
+              onPressed: () {}, 
+              icon: const Icon(Icons.search)
+            )
+          ],
+        ),
+      ),
       backgroundColor: Colors.grey[100],
       body: Column(
         children: [
@@ -74,68 +171,82 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const PendudukPage()));
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset("assets/images/sehat.png", height: 80, width: 80,),
+                          const Text(
+                            "penduduk",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const WafatPage()));
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset("assets/images/meninggal.png", height: 80, width: 80,),
+                          const Text(
+                            "Penduduk Wafat",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const KelahiranPage()));
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset("assets/images/lahir.png", height: 80, width: 80,),
+                          const Text(
+                            "Penduduk Lahir",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const KawinPage()));
+                  },
+                  child: Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PendudukPage()));
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset("assets/images/sehat.png", height: 80, width: 80,),
-                            const Text(
-                              "penduduk",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const WafatPage()));
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset("assets/images/meninggal.png", height: 80, width: 80,),
-                            const Text(
-                              "Penduduk Wafat",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const KelahiranPage()));
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset("assets/images/lahir.png", height: 80, width: 80,),
-                            const Text(
-                              "Penduduk Lahir",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                              ),
-                            )
-                          ],
+                      Image.asset("assets/images/wedding.png", height: 80, width: 80,),
+                      const Text(
+                        "Penduduk Kawin",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500
                         ),
                       )
                     ],
                   ),
                 ),
                 const SizedBox(height: 20),
-                const CardPeople()
               ],
             ),
           ),
@@ -228,45 +339,45 @@ class Penduduk extends StatelessWidget {
   }
 }
 
-class CardPeople extends StatelessWidget {
-  const CardPeople({ Key? key }) : super(key: key);
+// class CardPeople extends StatelessWidget {
+//   const CardPeople({ Key? key }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40)
-      ),
-      padding: const EdgeInsets.only(top: 120),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddUser()));
-        },
-        child: Center(
-          child: Card(
-            color: Colors.grey[100],
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: const DecorationImage(
-                  image: AssetImage("assets/images/rianne-zuur-2NITiiVwWBE-unsplash.jpg"),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter
-                )
-              ),
-              child: const Text(
-                "Tambah data kelahiran",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(40)
+//       ),
+//       padding: const EdgeInsets.only(top: 120),
+//       child: GestureDetector(
+//         onTap: () {
+//           Navigator.push(context, MaterialPageRoute(builder: (context) => const AddUser()));
+//         },
+//         child: Center(
+//           child: Card(
+//             color: Colors.grey[100],
+//             child: Container(
+//               padding: const EdgeInsets.all(20),
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(20),
+//                 image: const DecorationImage(
+//                   image: AssetImage("assets/images/rianne-zuur-2NITiiVwWBE-unsplash.jpg"),
+//                   fit: BoxFit.cover,
+//                   alignment: Alignment.topCenter
+//                 )
+//               ),
+//               child: const Text(
+//                 "Tambah data kelahiran",
+//                 style: TextStyle(
+//                   fontSize: 16,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.white
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

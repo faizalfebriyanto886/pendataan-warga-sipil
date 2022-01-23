@@ -1,24 +1,24 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:pendataan_warga_sipil/model/kelahiran_model.dart';
+import 'package:pendataan_warga_sipil/model/kawin_model.dart';
 import 'package:pendataan_warga_sipil/widgets/colors.dart';
 import 'package:http/http.dart' as http;
 
-class KelahiranPage extends StatefulWidget {
-  const KelahiranPage({ Key? key }) : super(key: key);
+class KawinPage extends StatefulWidget {
+  const KawinPage({ Key? key }) : super(key: key);
 
   @override
-  _KelahiranPageState createState() => _KelahiranPageState();
+  _KawinPageState createState() => _KawinPageState();
 }
 
-class _KelahiranPageState extends State<KelahiranPage> {
-  final List<KelahiranModel> getKelahiran = [];
-  List<KelahiranModel> get listKelahiran => getKelahiran;
+class _KawinPageState extends State<KawinPage> {
+  final List<KawinModel> getKawin = [];
+  List<KawinModel> get listKawin => getKawin;
 
   
-  Future<List> getDataKelahiran() async {
-    final response = await http.get(Uri.parse('http://192.168.1.6/db-sipil/kelahiran.php?function=get_kelahiran'));
+  Future<List> getDataKawin() async {
+    final response = await http.get(Uri.parse('http://192.168.1.6/db-sipil/kawin.php?function=get_kawin'));
     debugPrint(response.body);
     return jsonDecode(response.body);
   }
@@ -27,10 +27,10 @@ class _KelahiranPageState extends State<KelahiranPage> {
 // ignore: must_call_super
   void initState() {
     super.initState();
-    getDataKelahiran().then((value) {
+    getDataKawin().then((value) {
       setState(() {
         for (Map listen in value) {
-          getKelahiran.add(KelahiranModel.fromJson(listen as dynamic));
+          getKawin.add(KawinModel.fromJson(listen as dynamic));
         }
       });
     });
@@ -45,14 +45,12 @@ class _KelahiranPageState extends State<KelahiranPage> {
       body: Container(
         padding: const EdgeInsets.all(10),
         child: ListView.builder(
-          itemCount: getKelahiran.length,
+          itemCount: getKawin.length,
           itemBuilder: (context, index) {
             return CardItem(
-              nomorKelahiran: getKelahiran[index].nomorKelahiran,
-              tempat: getKelahiran[index].tempat,
-              hari: getKelahiran[index].hari,
-              tanggal: getKelahiran[index].tanggal.toString(),
-              keterangan: getKelahiran[index].keterangan,
+              tanggal: getKawin[index].tanggalKawin.toString(),
+              akta: getKawin[index].aktaKawin,
+              tempat: getKawin[index].tempatKawin,
             );
           },
         )
@@ -62,20 +60,16 @@ class _KelahiranPageState extends State<KelahiranPage> {
 }
 
 class CardItem extends StatelessWidget {
-  final String nomorKelahiran;
-  final String tempat;
-  final String hari;
   final String tanggal;
-  final String keterangan;
+  final String akta;
+  final String tempat;
 
 
   const CardItem({
     Key? key,
-    required this.nomorKelahiran,
-    required this.tempat,
-    required this.hari,
     required this.tanggal,
-    required this.keterangan,
+    required this.akta,
+    required this.tempat,
   }) : super(key: key);
 
   @override
@@ -93,52 +87,7 @@ class CardItem extends StatelessWidget {
               Row(
                 children:  [
                   const Text(
-                    "Nomor kelahiran :",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    nomorKelahiran
-                  )
-                ],
-              ),
-              Row(
-                children:  [
-                  const Text(
-                    "Tempat :",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    tempat
-                  )
-                ],
-              ),
-              Row(
-                children:  [
-                  const Text(
-                    "Hari :",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    hari
-                  )
-                ],
-              ),
-              Row(
-                children:  [
-                  const Text(
-                    "Tanggal :",
+                    "Tanggal Kawin :",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold
@@ -153,7 +102,7 @@ class CardItem extends StatelessWidget {
               Row(
                 children:  [
                   const Text(
-                    "Keterangan :",
+                    "Akta Kawin :",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold
@@ -161,7 +110,22 @@ class CardItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    keterangan
+                    akta
+                  )
+                ],
+              ),
+              Row(
+                children:  [
+                  const Text(
+                    "Tempat Kawin :",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    tempat
                   )
                 ],
               ),

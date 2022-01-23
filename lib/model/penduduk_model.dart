@@ -1,36 +1,3 @@
-// class PendudukModel {
-//   final int nik;
-//   final String nama;
-//   final String jenisKelamin;
-//   final String agama;
-//   final String statusKawin;
-//   final String pekerjaan;
-
-//   PendudukModel({
-//     required this.nik,
-//     required this.nama,
-//     required this.jenisKelamin,
-//     required this.agama,
-//     required this.statusKawin,
-//     required this.pekerjaan,
-//   });
-
-//   factory PendudukModel.fromJson(Map<String, dynamic> json) {
-//     return PendudukModel(
-//       nik: json['nik'],
-//       nama: json['nama'], 
-//       jenisKelamin: json['jenis_kelamin'], 
-//       agama: json['agama'], 
-//       statusKawin: json['status_kawin'], 
-//       pekerjaan: json['pekerjaan'],
-//     );
-//   }
-// }
-
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
 import 'dart:convert';
 
 List<PendudukModel> welcomeFromJson(String str) => List<PendudukModel>.from(json.decode(str).map((x) => PendudukModel.fromJson(x)));
