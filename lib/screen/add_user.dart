@@ -30,7 +30,7 @@ class _AddUserState extends State<AddUser> {
 
 
   void tambahData() async {
-    var kelahiran = await http.post(Uri.parse('http://192.168.1.6/db-sipil/kelahiran.php?function=insert_kelahiran'),
+    var kelahiran = await http.post(Uri.parse('http://192.168.1.10/db-sipil/kelahiran.php?function=insert_kelahiran'),
       body: {
         "nomor_kelahiran": _nomorKelahiran.text,
         "tempat": _tempat.text,

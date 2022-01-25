@@ -18,7 +18,7 @@ class _KelahiranPageState extends State<KelahiranPage> {
 
   
   Future<List> getDataKelahiran() async {
-    final response = await http.get(Uri.parse('http://192.168.1.6/db-sipil/kelahiran.php?function=get_kelahiran'));
+    final response = await http.get(Uri.parse('http://192.168.1.10/db-sipil/kelahiran.php?function=get_kelahiran'));
     debugPrint(response.body);
     return jsonDecode(response.body);
   }

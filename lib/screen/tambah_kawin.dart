@@ -20,7 +20,7 @@ class _TambahKawinState extends State<TambahKawin> {
   final TextEditingController _tempatKawin = TextEditingController();
 
   void tambahKawin() async {
-    var kawin = await http.post(Uri.parse('http://192.168.1.6/db-sipil/kawin.php?function=insert_kawin'),
+    var kawin = await http.post(Uri.parse('http://192.168.1.10/db-sipil/kawin.php?function=insert_kawin'),
       body: {
         "tanggal_kawin": tanggal.text,
         "akta_kawin": _aktaKawin.text,
